@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
+ * This class tests 4 different algorithms (bubble, insertion, merge, and quick) using variable array lengths, order
+ * within the array, and outputs it to an textfile.
  *
  * @author Sadat Islam
  * @version 1.0
@@ -15,7 +17,7 @@ public class Assign1 {
     // Algorithms
 
     /**
-     * Sorts an array into accending order
+     * Sorts an array into ascending order
      * @param array array to be sorted
      */
     private static void bubbleSort( int [] array)
@@ -32,7 +34,7 @@ public class Assign1 {
 
 
     /**
-     * Sorts an array into accending order
+     * Sorts an array into ascending order
      * @param arr array to be sorted
      */
     private static void insertionSort( int [] arr)
@@ -47,7 +49,7 @@ public class Assign1 {
     }
 
     /**
-     * Sorts an array into accending order
+     * Sorts an array into ascending order
      * @param arr array to be sorted
      * @param first index of first element
      * @param last index of last element
@@ -67,7 +69,7 @@ public class Assign1 {
 
     /**
      *  Merges two arrays together
-     *  Code recieved from Drozdek- Data Structures and Algorithms in Java 2nd Edition
+     *  Code received from Drozdek- Data Structures and Algorithms in Java 2nd Edition
      * @param arr master array
      * @param first first index of the  left sub array
      * @param last last index of the right sub array
@@ -85,25 +87,73 @@ public class Assign1 {
             else
                 temp[i1++] = arr[i3++];
         }
-        if( i2 == mid)
+        if( i2 == mid + 1)
             while( i1 < temp.length)
                 temp[i1++] = arr[i3++];
         else
             while( i1 < temp.length)
                 temp[i1++] = arr[i2++];
-        System.arraycopy( temp, 0, arr, 0, temp.length);
+        System.arraycopy( temp, 0, arr, first, temp.length);
     }
 
     /**
-     * Sorts an array into accending order
+     * Sorts an array into ascending order
      * @param arr master array
      * @param first index of first element of sub array
      * @param last index of last element of sub array
      */
     private static void quickSort( int arr[], int first, int last)
     {
+        int lower = first + 1, upper = last;
+        swap( arr, first, (first + last) / 2);
+
+        // How we chose the pivot (mid point)
+        int pivot = arr[first];
+
+        while( lower <= upper)
+        {
+            while( arr[lower] <= pivot)
+                lower++;
+            while( arr[upper] > pivot)
+                upper--;
+            if( lower < upper)
+                swap( arr, lower++, upper--);
+            else
+                lower++;
+        }
+        swap( arr, upper, first);
+        if( first < upper - 1)
+            quickSort( arr, first, upper - 1);
+        if( upper + 1 < last)
+            quickSort( arr, upper + 1, last);
+
+    }
+
+    private static void quickSort( int [] arr)
+    {
+        if( arr.length < 2)
+            return;
+        int max = 0;
+        for(int i = 1; i < arr.length; i++)
+            if( arr[i] > arr[max])
+                max = i;
+        swap(arr, arr.length - 1, max);
+        quickSort( arr, 0, arr.length - 2);
 
 
+    }
+
+    /**
+     * Swaps values in index a and b
+     * @param arr master array
+     * @param a index contents in a will be swaped with index contents of b
+     * @param b index contents in b will be swapped with index contents of a
+     */
+    private static void swap( int [] arr, int a, int b)
+    {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 
 
@@ -197,7 +247,7 @@ public class Assign1 {
         else if ( args[2].equals("quick"))
         {
             start = System.nanoTime();
-            quickSort( array, 0, array.length);
+            quickSort( array);
             end = System.nanoTime();
         }
         else
