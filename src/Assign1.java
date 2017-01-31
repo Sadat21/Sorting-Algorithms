@@ -59,9 +59,7 @@ public class Assign1 {
         if(first < last)
         {
             int mid = (first + last) / 2;
-            //System.out.println("Called left");
             mergeSort( arr, first, mid);
-            //System.out.println("Called right");
             mergeSort( arr, mid + 1, last);
             merge( arr, first,last);
         }
