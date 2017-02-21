@@ -18,6 +18,8 @@ public class Assign1 {
 
     /**
      * Sorts an array into ascending order
+     *
+     * Code got from Dr. Manzara's lectures
      * @param array array to be sorted
      */
     private static void bubbleSort( int [] array)
@@ -35,6 +37,8 @@ public class Assign1 {
 
     /**
      * Sorts an array into ascending order
+     *
+     * Code copied from Dr. Manzara's lectures
      * @param arr array to be sorted
      */
     private static void insertionSort( int [] arr)
@@ -50,6 +54,8 @@ public class Assign1 {
 
     /**
      * Sorts an array into ascending order
+     *
+     * Code copied from Dr. Manzara's lectures
      * @param arr array to be sorted
      * @param first index of first element
      * @param last index of last element
@@ -98,6 +104,8 @@ public class Assign1 {
 
     /**
      * Sorts an array into ascending order
+     *
+     * Code received from Drozdek- Data Structures and Algorithms in Java 2nd Edition
      * @param arr master array
      * @param first index of first element of sub array
      * @param last index of last element of sub array
@@ -129,6 +137,13 @@ public class Assign1 {
 
     }
 
+    /**
+     * Finds the largest value in the array and moves it to the correct spot, this is to
+     * solve out of bound errors.
+     *
+     * Code received from Drozdek- Data Structures and Algorithms in Java 2nd Edition
+     * @param arr array to be sorted
+     */
     private static void quickSort( int [] arr)
     {
         if( arr.length < 2)
@@ -159,7 +174,9 @@ public class Assign1 {
 
     /**
      * Runs the program
-     * @param args command line will supply values for the order, size, algorthim, and output file name
+     * First checks to make sure all commandline arguments are suitable. Runs the chosen algorithm and times it. Outputs
+     * the time on the console and prints the array into a text file.
+     * @param args command line will supply values for the order, size, algorithm, and output file name
      */
     public static void main( String [] args)
     {
